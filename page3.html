@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise History</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="page2.html">Exercise Log</a></li>
+                <li><a href="page3.html">Exercise History</a></li>
+            </ul>
+        </nav>
+        <h1>Exercise History</h1>
+    </header>
+    <main>
+        <div class="container">
+            <h2>Exercise Log History</h2>
+            <div class="history" id="history">
+                <!-- Historical data will be displayed here -->
+            </div>
+        </div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', loadHistory);
+
+        function loadHistory() {
+            const history = JSON.parse(localStorage.getItem('exerciseHistory')) || [];
+            const historyDiv = document.getElementById('history');
+            if (history.length === 0) {
+                historyDiv.innerHTML = '<p>No exercise logs found.</p>';
+                return;
+            }
+
+            let exercises = {};
+
+            // Organize logs by exercise
+            history.forEach(log => {
+                if (!exercises[log.exercise]) {
+                    exercises[log.exercise] = [];
+                }
+                exercises[log.exercise].push(log);
+            });
+
+            historyDiv.innerHTML = ''; // Clear previous content
+
+            for (const [exercise, logs] of Object.entries(exercises)) {
+                historyDiv.innerHTML += `
+                    <div class="exercise-group">
+                        <h3>${exercise}</h3>
+                        ${logs.map(log => `
+                            <p><strong>Weight:</strong> ${log.weight} lbs</p>
+                            <p><strong>Reps:</strong> ${log.reps}</p>
+                            <p><strong>Date:</strong> ${log.date}</p>
+                            <hr>
+                        `).join('')}
+                    </div>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif; /* Modern font */
+    background-color: #000000; /* Black background */
+    color: #ffffff; /* White text */
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    background-color: #1e3a8a; /* Dark blue background */
+    color: #ffffff;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #cbd5e0; /* Light grey color on hover */
+}
+
+/* Page Container */
+.container {
+    margin: 40px auto;
+    max-width: 1200px;
+    padding: 30px;
+    background-color: #1a202c; /* Darker grey-blue background */
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Exercise Log Styles */
+select, input {
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 2px solid #3b82f6; /* Blue border */
+    border-radius: 8px;
+    width: calc(100% - 32px);
+    box-sizing: border-box;
+    font-size: 18px;
+    color: #000000;
+}
+
+button {
+    background-color: #3b82f6; /* Blue background */
+    border: none;
+    color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2563eb; /* Darker blue */
+}
+
+.result {
+    margin-top: 30px;
+    background-color: #2d3748; /* Slightly lighter dark grey-blue */
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Exercise History Styles */
+.history {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.exercise-group {
+    background-color: #2d3748; /* Slightly lighter dark grey-blue */
+    margin: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    flex: 1;
+    min-width: 300px;
+    box-sizing: border-box;
+}
+
+h2, h3 {
+    color: #3b82f6; /* Blue color */
+}
+
+.exercise-group p {
+    margin: 10px 0;
+}
+
+.exercise-group hr {
+    border: 0;
+    height: 2px;
+    background: #3b82f6; /* Blue color */
+    margin: 15px 0;
+}

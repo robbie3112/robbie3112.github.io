@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise Log</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="page2.html">Exercise Log</a></li>
+                <li><a href="page3.html">Exercise History</a></li>
+            </ul>
+        </nav>
+        <h1>Exercise Log</h1>
+    </header>
+    <main>
+        <div class="container">
+            <h2>Log Your Exercise</h2>
+            <label for="exercise">Select Exercise:</label>
+            <select id="exercise">
+                <option value="Bench Press">Bench Press</option>
+                <option value="Squat">Squat</option>
+                <option value="Deadlift">Deadlift</option>
+                <option value="Overhead Press">Overhead Press</option>
+                <option value="Pull-Up">Pull-Up</option>
+            </select>
+
+            <label for="weight">Weight (lbs):</label>
+            <input type="number" id="weight" placeholder="Enter weight">
+
+            <label for="reps">Number of Reps:</label>
+            <input type="number" id="reps" placeholder="Enter reps">
+
+            <button onclick="logExercise()">Log Exercise</button>
+
+            <div class="result" id="result">
+                <!-- Results will be displayed here -->
+            </div>
+        </div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', loadHistory);
+
+        function logExercise() {
+            const exercise = document.getElementById('exercise').value;
+            const weight = document.getElementById('weight').value;
+            const reps = document.getElementById('reps').value;
+            const date = new Date().toLocaleDateString(); // Get current date
+
+            if (!weight || !reps) {
+                alert('Please enter both weight and number of reps.');
+                return;
+            }
+
+            // Save to local storage
+            const log = {
+                exercise,
+                weight,
+                reps,
+                date
+            };
+            saveLog(log);
+
+            // Display the result
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `
+                <h3>Logged Exercise:</h3>
+                <p><strong>Exercise:</strong> ${exercise}</p>
+                <p><strong>Weight:</strong> ${weight} lbs</p>
+                <p><strong>Reps:</strong> ${reps}</p>
+                <p><strong>Date:</strong> ${date}</p>
+            `;
+
+            // Clear inputs
+            document.getElementById('weight').value = '';
+            document.getElementById('reps').value = '';
+
+            // Update history
+            loadHistory();
+        }
+
+        function saveLog(log) {
+            let history = JSON.parse(localStorage.getItem('exerciseHistory')) || [];
+            history.push(log);
+            localStorage.setItem('exerciseHistory', JSON.stringify(history));
+        }
+
+        function loadHistory() {
+            const history = JSON.parse(localStorage.getItem('exerciseHistory')) || [];
+            const resultDiv = document.getElementById('result');
+            if (history.length === 0) {
+                resultDiv.innerHTML = '<p>No exercise logs found.</p>';
+                return;
+            }
+        }
+    </script>
+</body>
+</html>
